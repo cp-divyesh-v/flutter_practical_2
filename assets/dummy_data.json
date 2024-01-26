@@ -1,13 +1,13 @@
 {
-    "userName": "DK",
+    "userName": "Divyesh",
     "profileImage":
     "https://avatars.githubusercontent.com/u/83937721?v=4",
     "bodyMonitors": [
-        {"title": "Heart Rate", "image": "assets/heart.png", "value": "78 BPM"},
-        {"title": "Steps", "image": "assets/steps.png", "value": "6,200 M"},
-        {"title": "SpO2 Monitor", "image": "assets/oxygen.png", "value": "98%"},
-        {"title": "Strength", "image": "assets/strength.png", "value": "48"},
-        {"title": "More", "image": "assets/more.png"}
+        {"title": "Heart Rate", "image": "assets/images/heart.png", "value": "78 BPM"},
+        {"title": "Steps", "image": "assets/images/steps.png", "value": "6,200 M"},
+        {"title": "SpO2 Monitor", "image": "assets/images/oxygen.png", "value": "98%"},
+        {"title": "Strength", "image": "assets/images/strength.png", "value": "48"},
+        {"title": "More", "image": "assets/images/more.png"}
     ],
     "workoutPrograms": [
         {

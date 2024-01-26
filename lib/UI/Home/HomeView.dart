@@ -14,7 +14,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-
   final UserRepository _userRepository = UserRepository.shared;
   User? _user;
 
@@ -34,7 +33,8 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return _user != null ? _body(context, _user!)
+    return _user != null
+        ? _body(context, _user!)
         : const CircularProgressIndicator();
   }
 
@@ -52,7 +52,8 @@ class _HomeViewState extends State<HomeView> {
                   style: AppTextStyle.subtitle(fontSize: 18),
                 ),
                 const SizedBox(height: 8),
-                Text('Ready to workout?',
+                Text(
+                  'Ready to workout?',
                   style: AppTextStyle.header1(),
                 ),
               ],
@@ -63,7 +64,8 @@ class _HomeViewState extends State<HomeView> {
               child: Padding(
                 padding: const EdgeInsets.all(3), // Border radius
                 child: ClipOval(
-                    child: user.profileImage != null ? Image.network(user.profileImage!)
+                    child: user.profileImage != null
+                        ? Image.network(user.profileImage!)
                         : Image.asset('assets/images.profile_image.jpg')),
               ),
             ),
@@ -76,7 +78,12 @@ class _HomeViewState extends State<HomeView> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                _monitoringThings(context, user.bodyMonitors != null ? user.bodyMonitors! : [])
+                Vspacer(height: 15),
+                _monitoringThings(context, user.bodyMonitors!),
+                Vspacer(height: 15),
+                _titleView("Workout programs"),
+                _workoutTypeList(
+                    user.workoutPrograms != null ? user.workoutPrograms! : []),
               ],
             ),
           ),
@@ -86,16 +93,17 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget _monitoringThings(context, List<BodyMonitors> monitoring) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20, bottom: 20),
+    return SizedBox(
+      height: 180,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
           ...monitoring.map((bodyMonitor) {
-            return Container(
+            return SizedBox(
+              // height: 180,
+              width: 170,
               child: _bodyMonitorCell(context, bodyMonitor),
             );
-            
           }),
         ],
       ),
@@ -103,27 +111,88 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget _bodyMonitorCell(context, BodyMonitors bodyMonitors) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.yellow[100],
-        borderRadius: BorderRadius.circular(25)
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            Image.asset(bodyMonitors.image != null ? bodyMonitors.image! : ''),
-            Vspacer(),
-            Text(bodyMonitors.title != null ? bodyMonitors.title! : '',
-            style: AppTextStyle.normal()),
-            Vspacer(height: 10),
-            Text(bodyMonitors.value != null ? bodyMonitors.value! : '',
-            style: AppTextStyle.title()),
-          ],
+    return Padding(
+      padding: const EdgeInsets.only(left: 15),
+      child: Container(
+        decoration: BoxDecoration(
+            color: Colors.yellow[100], borderRadius: BorderRadius.circular(25)),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              const Spacer(),
+              Container(
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset(
+                        bodyMonitors.image != null ? bodyMonitors.image! : ''),
+                  )),
+              Vspacer(),
+              Text(bodyMonitors.title != null ? bodyMonitors.title! : '',
+                  style: AppTextStyle.normal()),
+              Vspacer(height: 10),
+              Text(bodyMonitors.value != null ? bodyMonitors.value! : '',
+                  style: AppTextStyle.header1()),
+              const Spacer(),
+            ],
+          ),
         ),
       ),
     );
   }
 
+  Widget _workoutTypeList(List<WorkoutPrograms> workoutPrograms) {
+    List<String> types =
+        workoutPrograms.map((e) => e.type).toList().nonNulls.toList();
+    return SizedBox(
+      height: 60,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: [
+          ...types.map((type) {
+            return Container(
+              padding: EdgeInsets.all(8),
+              height: 60,
+              child: workoutProgramTypeCell(type, true),
+            );
+          }),
+        ],
+      ),
+    );
+  }
 
+  Widget workoutProgramTypeCell(String type, bool isSelected) {
+    return OutlinedButton(
+      onPressed: () {
+          print("=== type selecte is $type");
+        // Perform an action when the button is pressed
+      },
+      style: OutlinedButton.styleFrom(
+        backgroundColor: isSelected ? Colors.green[100] : null,
+        foregroundColor: Colors.black,
+        side: const BorderSide(color: Colors.grey),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25),
+        ),
+      ),
+      child: Text('Click me',
+          style: AppTextStyle.title(),
+      ),
+    );
+  }
+
+  Widget _titleView(String title) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: Container(
+        alignment: Alignment.centerLeft,
+        child: Text(title, style: AppTextStyle.header1()),
+      ),
+    );
+  }
 }
