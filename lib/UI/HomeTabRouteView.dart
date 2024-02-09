@@ -3,6 +3,7 @@ import 'package:flutter_practical_2/Data/Repositories/UserRepository.dart';
 import 'package:flutter_practical_2/Extensions/String+Extension.dart';
 import 'package:flutter_practical_2/Styles/AppTextStyle.dart';
 import 'package:flutter_practical_2/UI/Home/HomeView.dart';
+import 'package:flutter_practical_2/UI/Home/WorkoutDetailView.dart';
 
 import '../Data/Models/User.dart';
 
@@ -19,10 +20,7 @@ class _HomeTabRouteViewState extends State<HomeTabRouteView> {
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     HomeView(),
-    Text(
-      'Index 1: Community',
-      style: optionStyle,
-    ),
+    WorkoutDetailView(),
     Text(
       'Index 2: Schedule',
       style: optionStyle,

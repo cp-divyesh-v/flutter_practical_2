@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_practical_2/Data/Repositories/UserRepository.dart';
 import 'package:flutter_practical_2/Extensions/String+Extension.dart';
 import 'package:flutter_practical_2/Styles/Spacer.dart';
-import 'package:flutter_practical_2/Utils/RndomNumHelper.dart';
 
 import '../../Data/Models/User.dart';
 import '../../Styles/AppTextStyle.dart';
@@ -61,9 +60,8 @@ class _HomeViewState extends State<HomeView> {
               children: [
                 Text(
                   'Good morning, ${user.userName != null ? user.userName!.capitalize() : 'Hey there'}!',
-                  style: AppTextStyle.subtitle(fontSize: 18),
+                  style: AppTextStyle.subtitle(fontSize: 16),
                 ),
-                const SizedBox(height: 8),
                 Text(
                   'Ready to workout?',
                   style: AppTextStyle.header1(),
@@ -80,7 +78,7 @@ class _HomeViewState extends State<HomeView> {
         ),
       ),
       body: Container(
-        color: Color(0xfffffcf9),
+        color: const Color(0xfffffcf9),
         child: ListView(
           children: [
             Center(
@@ -91,6 +89,7 @@ class _HomeViewState extends State<HomeView> {
                   _monitoringThings(user.bodyMonitors!),
                   Vspacer(height: 15),
                   _titleView("Workout programs"),
+                  Vspacer(height: 15),
                   _workoutTypeList(
                       user.workoutPrograms != null ? user.workoutPrograms! : []),
                   Vspacer(height: 15),
@@ -130,7 +129,8 @@ class _HomeViewState extends State<HomeView> {
       padding: const EdgeInsets.only(left: 15),
       child: Container(
         decoration: BoxDecoration(
-            color: colors[index % colors.length], borderRadius: BorderRadius.circular(25)),
+            color: colors[index % colors.length],
+            borderRadius: BorderRadius.circular(35)),
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
@@ -227,29 +227,31 @@ class _HomeViewState extends State<HomeView> {
 
   Widget _coachCard(Items item, int index) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(left: 15),
       child: Container(
         padding: const EdgeInsets.all(16),
         width: 350,
-        height: 300,
+        height: 250,
         decoration: BoxDecoration(
           color: colors[index % colors.length],
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(35),
         ),
         child: Row(
           children: [
             Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   alignment: Alignment.centerLeft,
                     child: Text("Coach: \nStretch", style: AppTextStyle.header2())
                 ),
-                Vspacer(height: 10),
+                Vspacer(height: 20),
                 Container(
                   alignment: Alignment.centerLeft,
                     child: Text(item.time ?? "", style: AppTextStyle.title())
                 ),
+                Vspacer(height: 20),
                 _userListView(item.userImages ?? [])
               ],
             ),
@@ -340,7 +342,7 @@ class _HomeViewState extends State<HomeView> {
         children: [
           Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(25),
               color: const Color(0xfffff5e6),
             ),
             padding: const EdgeInsets.all(15),
@@ -360,7 +362,7 @@ class _HomeViewState extends State<HomeView> {
           ),
           HSpacer(width: 15),
           ClipRRect(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(30),
             child: Image.asset("assets/images/map_view.png",
             fit: BoxFit.fill,
               height: 200,
@@ -371,5 +373,4 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   }
-
 }
