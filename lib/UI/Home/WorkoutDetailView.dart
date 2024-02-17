@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_practical_2/Data/Repositories/UserRepository.dart';
 import 'package:flutter_practical_2/Styles/Spacer.dart';
 import 'package:flutter_practical_2/UI/Home/HomeView.dart';
+import 'package:flutter_practical_2/Utils/RoundedButtonAppBar.dart';
 
 import '../../Data/Models/User.dart';
 import '../../Styles/AppTextStyle.dart';
@@ -47,20 +48,8 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
   Widget _body(User user) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            roundedCornerIconButton(icon: Icons.chevron_left),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Sharon Howard', style: AppTextStyle.header1()),
-                Text('Yoga trainer', style: AppTextStyle.subtitle()),
-              ],
-            ),
-            roundedCornerIconButton(icon: Icons.more_horiz)
-          ],
-        ),
+        title: roundedButtonAppBar(
+            title: 'Sharon Howard', subtitle: 'Yoga trainer'),
       ),
       body: Container(
         padding: const EdgeInsets.all(15),
@@ -79,19 +68,6 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
         ),
       ),
     );
-  }
-
-  Widget roundedCornerIconButton(
-      {required IconData icon, Color color = Colors.black}) {
-    return IconButton(
-        onPressed: () {},
-        icon: Container(
-          padding: const EdgeInsets.all(15),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: const Color(0xfffff3df)),
-          child: Icon(icon, color: color),
-        ));
   }
 
   Widget getMoreWorkoutButton() {
