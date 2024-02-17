@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practical_2/Data/Repositories/UserRepository.dart';
-import 'package:flutter_practical_2/Extensions/String+Extension.dart';
-import 'package:flutter_practical_2/Styles/AppTextStyle.dart';
 import 'package:flutter_practical_2/UI/Home/HomeView.dart';
 import 'package:flutter_practical_2/UI/Home/WorkoutDetailView.dart';
-
-import '../Data/Models/User.dart';
+import 'package:flutter_practical_2/UI/Home/WorkoutScreen.dart';
 
 class HomeTabRouteView extends StatefulWidget {
   const HomeTabRouteView({super.key});
@@ -17,14 +13,11 @@ class HomeTabRouteView extends StatefulWidget {
 class _HomeTabRouteViewState extends State<HomeTabRouteView> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     HomeView(),
     WorkoutDetailView(),
-    Text(
-      'Index 2: Schedule',
-      style: optionStyle,
-    ),
+    WorkoutScreen(),
     Text(
       'Index 3: Progress',
       style: optionStyle,
